@@ -51,9 +51,9 @@ class RecursiveCaptionDataset(Dataset):
 
     data_path = {
         "anet": {
-            "env_feat": "data/anet/anet_c3d/",
-            "clip_feat": "data/anet/anet_clip_b16/lang_feature/",
-            "sent_feat": "data/anet/anet_clip_b16/sent_feature/"
+            "env_feat": "/content/drive/MyDrive/Colab_Notebooks/anet/unzipped/anet_c3d/",
+            "clip_feat": "/content/drive/MyDrive/Colab_Notebooks/anet/unzipped/anet_clip_b16/lang_feature/",
+            "sent_feat": "/content/drive/MyDrive/Colab_Notebooks/anet/unzipped/anet_clip_b16/sent_feature/"
         },
         "yc2": {
             "env_feat": "data/yc2/yc2_c3d/",
