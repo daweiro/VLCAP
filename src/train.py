@@ -347,14 +347,14 @@ def train(model, training_data, validation_data, device, opt, resume_path=None):
             ema.load_state_dict(state_dict["ema"])
         opt = state_dict["opt"]
         last_epoch = state_dict["epoch"]
-        wandb.init(project="VLCap", config=opt, id=opt.run_id, resume=True)
+        #wandb.init(project="VLCap", config=opt, id=opt.run_id, resume=True)
     else:
         last_epoch = 0
-        run_id = wandb.util.generate_id()
-        opt.run_id = run_id
-        wandb.init(project="VLCap", config=opt, id=run_id, resume="allow")
+        #run_id = wandb.util.generate_id()
+        #opt.run_id = run_id
+        #wandb.init(project="VLCap", config=opt, id=run_id, resume="allow")
         
-    wandb.watch(model)
+   # wandb.watch(model)
     print("run id: ", run_id)
 
     prev_best_score = 0.
@@ -374,7 +374,7 @@ def train(model, training_data, validation_data, device, opt, resume_path=None):
         niter = (epoch_i + 1) * len(training_data)  # number of bart
         writer.add_scalar("Train/Acc", train_acc, niter)
         writer.add_scalar("Train/Loss", train_loss, niter)
-        wandb.log({"train_loss": train_loss, "train_acc": train_acc})
+        #wandb.log({"train_loss": train_loss, "train_acc": train_acc})
 
         start = time.time()
 
@@ -407,12 +407,12 @@ def train(model, training_data, validation_data, device, opt, resume_path=None):
         writer.add_scalar("Val/Bleu_4", val_greedy_output["Bleu_4"]*100, niter)
         writer.add_scalar("Val/CIDEr", val_greedy_output["CIDEr"]*100, niter)
         writer.add_scalar("Val/Re4", val_greedy_output["re4"]*100, niter)
-        wandb.log({
-            "val_meteor": val_greedy_output["METEOR"]*100,
-            "val_bleu4": val_greedy_output["Bleu_4"]*100,
-            "val_cider": val_greedy_output["CIDEr"]*100,
-            "val_re4": val_greedy_output["re4"]*100
-        })
+        #wandb.log({
+         #   "val_meteor": val_greedy_output["METEOR"]*100,
+        #    "val_bleu4": val_greedy_output["Bleu_4"]*100,
+        #    "val_cider": val_greedy_output["CIDEr"]*100,
+        #    "val_re4": val_greedy_output["re4"]*100
+        #})
 
         torch.save(checkpoint, opt.save_model + "last.ckpt")
 
@@ -455,9 +455,9 @@ def train(model, training_data, validation_data, device, opt, resume_path=None):
         if opt.debug:
             break
 
-    wandb.save(os.path.join(opt.save_model, "tmp_greedy_pred_*_all_metrics.json"))
-    wandb.save(os.path.join(opt.save_model, "tmp_greedy_pred_*.json"))
-    wandb.save(os.path.join(opt.save_model, "model.ckpt"))
+    #wandb.save(os.path.join(opt.save_model, "tmp_greedy_pred_*_all_metrics.json"))
+    #wandb.save(os.path.join(opt.save_model, "tmp_greedy_pred_*.json"))
+    #wandb.save(os.path.join(opt.save_model, "model.ckpt"))
     writer.close()
 
 
