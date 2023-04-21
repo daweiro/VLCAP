@@ -525,8 +525,8 @@ def get_args():
     parser.add_argument("--n_epoch", type=int, default=50, help="Number of training epochs")
     parser.add_argument("--max_es_cnt", type=int, default=10,
                         help="stop if the model is not improving for max_es_cnt max_es_cnt")
-    parser.add_argument("--batch_size", type=int, default=4, help="training batch size") #6
-    parser.add_argument("--val_batch_size", type=int, default=12, help="inference batch size")
+    parser.add_argument("--batch_size", type=int, default=8, help="training batch size") #6 4
+    parser.add_argument("--val_batch_size", type=int, default=24, help="inference batch size") #12
 
     parser.add_argument("--use_beam", action="store_true", help="use beam search, otherwise greedy search")
     parser.add_argument("--beam_size", type=int, default=2, help="beam size")
