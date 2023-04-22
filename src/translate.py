@@ -120,7 +120,7 @@ def get_data_loader(opt, eval_mode="val"):
     else:  # single sentence
         collate_fn = single_sentence_collate
     eval_data_loader = DataLoader(eval_dataset, collate_fn=collate_fn,
-                                  batch_size=opt.batch_size, shuffle=False, num_workers=8)
+                                  batch_size=opt.batch_size, shuffle=False, num_workers=128)#8
     return eval_data_loader
 
 
