@@ -522,11 +522,11 @@ def get_args():
     parser.add_argument("--word2idx_path", type=str, default="./cache/word2idx.json")
     parser.add_argument("--label_smoothing", type=float, default=0.1,
                         help="Use soft target instead of one-hot hard target")
-    parser.add_argument("--n_epoch", type=int, default=10, help="Number of training epochs")#50
+    parser.add_argument("--n_epoch", type=int, default=1, help="Number of training epochs")#50
     parser.add_argument("--max_es_cnt", type=int, default=10,
                         help="stop if the model is not improving for max_es_cnt max_es_cnt")
-    parser.add_argument("--batch_size", type=int, default=24, help="training batch size") #4
-    parser.add_argument("--val_batch_size", type=int, default=24, help="inference batch size") #12
+    parser.add_argument("--batch_size", type=int, default=32, help="training batch size") #4
+    parser.add_argument("--val_batch_size", type=int, default=32, help="inference batch size") #12
 
     parser.add_argument("--use_beam", action="store_true", help="use beam search, otherwise greedy search")
     parser.add_argument("--beam_size", type=int, default=2, help="beam size")
@@ -535,7 +535,7 @@ def get_args():
     parser.add_argument("--no_pin_memory", action="store_true",
                         help="Don't use pin_memory=True for dataloader. "
                              "ref: https://discuss.pytorch.org/t/should-we-set-non-blocking-to-true/38234/4")
-    parser.add_argument("---num_workers", type=int, default=8,
+    parser.add_argument("---num_workers", type=int, default=10, #8 #10 MAC M1 PRO Max10 workers
                         help="num subprocesses used to load the data, 0: use main process")
     parser.add_argument("--exp_id", type=str, default="res", help="id of the current run")
     parser.add_argument("--res_root_dir", type=str, default="results", help="dir to containing all the results")

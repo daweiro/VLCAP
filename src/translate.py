@@ -120,7 +120,7 @@ def get_data_loader(opt, eval_mode="val"):
     else:  # single sentence
         collate_fn = single_sentence_collate
     eval_data_loader = DataLoader(eval_dataset, collate_fn=collate_fn,
-                                  batch_size=opt.batch_size, shuffle=False, num_workers=8)
+                                  batch_size=opt.batch_size, shuffle=False, num_workers=10)#8 # Mac M1 Pro max 10 workers
     return eval_data_loader
 
 
@@ -130,7 +130,7 @@ def main():
     parser.add_argument("--eval_splits", type=str, nargs="+", default=["val", ],
                         choices=["val", "test"], help="evaluate on val/test set, yc2 only has val")
     parser.add_argument("--res_dir", required=True, help="path to dir containing model .pt file")
-    parser.add_argument("--batch_size", type=int, default=20, help="batch size")
+    parser.add_argument("--batch_size", type=int, default=40, help="batch size") #20
 
     # beam search configs
     parser.add_argument("--use_beam", action="store_true", help="use beam search, otherwise greedy search")
