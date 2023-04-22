@@ -535,7 +535,7 @@ def get_args():
     parser.add_argument("--no_pin_memory", action="store_true",
                         help="Don't use pin_memory=True for dataloader. "
                              "ref: https://discuss.pytorch.org/t/should-we-set-non-blocking-to-true/38234/4")
-    parser.add_argument("---num_workers", type=int, default=128,#8
+    parser.add_argument("---num_workers", type=int, default=12,#8
                         help="num subprocesses used to load the data, 0: use main process")
     parser.add_argument("--exp_id", type=str, default="res", help="id of the current run")
     parser.add_argument("--res_root_dir", type=str, default="results", help="dir to containing all the results")
