@@ -522,7 +522,7 @@ def get_args():
     parser.add_argument("--word2idx_path", type=str, default="./cache/word2idx.json")
     parser.add_argument("--label_smoothing", type=float, default=0.1,
                         help="Use soft target instead of one-hot hard target")
-    parser.add_argument("--n_epoch", type=int, default=50, help="Number of training epochs")
+    parser.add_argument("--n_epoch", type=int, default=1, help="Number of training epochs") #50
     parser.add_argument("--max_es_cnt", type=int, default=10,
                         help="stop if the model is not improving for max_es_cnt max_es_cnt")
     parser.add_argument("--batch_size", type=int, default=16, help="training batch size") #6 4
