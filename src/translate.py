@@ -130,7 +130,7 @@ def main():
     parser.add_argument("--eval_splits", type=str, nargs="+", default=["val", ],
                         choices=["val", "test"], help="evaluate on val/test set, yc2 only has val")
     parser.add_argument("--res_dir", required=True, help="path to dir containing model .pt file")
-    parser.add_argument("--batch_size", type=int, default=40, help="batch size") #20
+    parser.add_argument("--batch_size", type=int, default=160, help="batch size") #20
 
     # beam search configs
     parser.add_argument("--use_beam", action="store_true", help="use beam search, otherwise greedy search")
