@@ -355,7 +355,7 @@ def train(model, training_data, validation_data, device, opt, resume_path=None):
         wandb.init(project="VLCap", config=opt, id=run_id, resume="allow")
         
     wandb.watch(model)
-    print("run id: ", run_id)
+    print("run id: ")#, run_id)
 
     prev_best_score = 0.
     es_cnt = 0
@@ -522,11 +522,11 @@ def get_args():
     parser.add_argument("--word2idx_path", type=str, default="./cache/word2idx.json")
     parser.add_argument("--label_smoothing", type=float, default=0.1,
                         help="Use soft target instead of one-hot hard target")
-    parser.add_argument("--n_epoch", type=int, default=50, help="Number of training epochs")
+    parser.add_argument("--n_epoch", type=int, default=10, help="Number of training epochs")#50
     parser.add_argument("--max_es_cnt", type=int, default=10,
                         help="stop if the model is not improving for max_es_cnt max_es_cnt")
-    parser.add_argument("--batch_size", type=int, default=4, help="training batch size") #6
-    parser.add_argument("--val_batch_size", type=int, default=12, help="inference batch size")
+    parser.add_argument("--batch_size", type=int, default=24, help="training batch size") #4
+    parser.add_argument("--val_batch_size", type=int, default=24, help="inference batch size") #12
 
     parser.add_argument("--use_beam", action="store_true", help="use beam search, otherwise greedy search")
     parser.add_argument("--beam_size", type=int, default=2, help="beam size")
@@ -637,7 +637,7 @@ def main():
     opt.vocab_size = len(train_dataset.word2idx)
     print(json.dumps(vars(opt), indent=4, sort_keys=True))
 
-    device = torch.device("cuda" if opt.cuda else "cpu")
+    device = torch.device("cpu" if opt.cuda else "cpu")
     rt_config = EDict(
         xl_grad=opt.xl_grad,  # enable back-propagation for transformerXL model
         hidden_size=opt.hidden_size,
@@ -680,5 +680,5 @@ def main():
 
 
 if __name__ == "__main__":
-    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+    #os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     main()

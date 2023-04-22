@@ -51,7 +51,7 @@ class Translator(object):
     """Load with trained model and handle the beam search"""
     def __init__(self, opt, checkpoint, model=None):
         self.opt = opt
-        self.device = torch.device("cuda" if opt.cuda else "cpu")
+        self.device = torch.device("cpu" if opt.cuda else "cpu")
 
         self.model_config = checkpoint["model_cfg"]
         self.max_t_len = self.model_config.max_t_len

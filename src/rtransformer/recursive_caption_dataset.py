@@ -357,7 +357,7 @@ class RecursiveCaptionDataset(Dataset):
         indexed_feat_len = ed - st + 1
         valid_l = max_v_l
         if indexed_feat_len > max_v_l:
-            downsample_indices = np.linspace(st, ed, max_v_l, endpoint=True).astype(np.int).tolist()
+            downsample_indices = np.linspace(st, ed, max_v_l, endpoint=True).astype(np.int64).tolist()
             assert max(downsample_indices) < feat_len
             feat_video[1:max_v_l+1] = raw_vid_feat[downsample_indices]
             video_tokens = [self.CLS_TOKEN] + [self.VID_TOKEN] * max_v_l + [self.SEP_TOKEN]
@@ -375,8 +375,8 @@ class RecursiveCaptionDataset(Dataset):
         feat_len = len(raw_lang_feat)
         st, ed = self._convert_to_feat_index_st_ed(feat_len, timestamp, duration, feat_len)
         tmp = ed - st + 1
-        downsample_indices = np.linspace(st, ed, tmp, endpoint=True).astype(np.int)
-        downsample_downsample_indices = np.linspace(0, tmp - 1, valid_l, endpoint=True).astype(np.int).tolist()
+        downsample_indices = np.linspace(st, ed, tmp, endpoint=True).astype(np.int64) #DAVE
+        downsample_downsample_indices = np.linspace(0, tmp - 1, valid_l, endpoint=True).astype(np.int64).tolist()
         downsample_indices = downsample_indices[downsample_downsample_indices].tolist()
 
         for i, d in enumerate(downsample_indices, 1):
@@ -398,7 +398,7 @@ class RecursiveCaptionDataset(Dataset):
         indexed_feat_len = ed - st + 1
 
         if indexed_feat_len > max_v_l:
-            downsamlp_indices = np.linspace(st, ed, max_v_l, endpoint=True).astype(np.int).tolist()
+            downsamlp_indices = np.linspace(st, ed, max_v_l, endpoint=True).astype(np.int64).tolist()
             assert max(downsamlp_indices) < feat_len
             feat = raw_feat[downsamlp_indices]  # truncate, sample???
             mask = [1] * max_v_l  # no padding
